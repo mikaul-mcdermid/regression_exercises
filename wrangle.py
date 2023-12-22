@@ -107,6 +107,20 @@ def splitting_data(df):
                                      )
     return train, validate, test
 
+def X_y_split(df, target):
+    train, val, test = split_data(df)
+    X_train = train.drop(columns=target)
+    y_train = train[target]
+    X_val = val.drop(columns=target)
+    y_val = val[target]
+    X_test = test.drop(columns=target)
+    y_test = test[target]
+    print(f'X_train --> {X_train.shape}')
+    print(f'X_val --> {X_val.shape}')
+    print(f'X_test --> {X_test.shape}')
+    
+    return X_train, y_train, X_val, y_val, X_test, y_test
+
 def visualize(df):
     """
     Creates visualizations for our dataframe to visualize relationships between categorical and continuous variables.
